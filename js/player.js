@@ -23,6 +23,7 @@
       this.keys = [];
 
       document.body.addEventListener('keydown', function (ev) {
+         console.log("KEY" + ev.keyCode);
          if (self.keys[ev.keyCode]) {
             return;
          }
@@ -37,6 +38,12 @@
          }
          console.log("Up");
          self.keys[ev.keyCode] = false;
+
+         if (ev.keyCode == 32) {
+            window.reversed = window.reversed * -1;
+            self.jumping = true;
+            self.grounded = false;
+         }
       });
    }
    
@@ -44,19 +51,31 @@
    Player.prototype.update = function () {
       this.speed.horizontal = 0;
 
-      if (this.keys[38]) {
+      if (this.keys[38] === true && window.reversed === 1) {
+         console.log("JUMP");
          if (!this.jumping){
+            console.log("JUMP");
             this.jumping = true;
             this.grounded = false;
             this.speed.vertical = -6 * window.reversed;
          }
       }
 
-      if (this.keys[32]) {
+      if (this.keys[40] === true && window.reversed === -1) {
+         console.log("JUMP");
+         if (!this.jumping){
+            console.log("JUMP");
+            this.jumping = true;
+            this.grounded = false;
+            this.speed.vertical = -6 * window.reversed;
+         }
+      }
+
+     /* if (this.keys[32] === true) {
          window.reversed = -1;
       } else {
          window.reversed = 1;
-      }
+      }*/
 
       if (this.keys[39] === true) {
          if (this.collision.horizontal !== "r") {
