@@ -21,6 +21,7 @@
          horizontal: null
       };
       this.keys = [];
+      this.lifes = 3;
 
       document.body.addEventListener('keydown', function (ev) {
          console.log("KEY" + ev.keyCode);
@@ -46,6 +47,28 @@
          }
       });
    }
+
+   Player.prototype.reset = function () {
+      this.jumping = false;
+      this.grounded = false;
+      this.gravity = 0.3;
+      this.reversed = 1;
+      this.position = {
+         x: 10,
+         y: 30
+      };
+      this.dimensions = {
+         width: 8,
+         height: 8
+      };
+      this.speed = {
+         vertical: 0,
+         horizontal: 0
+      };
+      this.collision = {
+         horizontal: null
+      };
+   };
    
 
    Player.prototype.update = function () {

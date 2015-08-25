@@ -4,17 +4,36 @@
       this.currentStage = null;
       this.canvas = null;
       this.context = null;
+      this.game_over = false;
+      this.guiRender = null;
       window.reversed = 1;
    }
 
    Main.prototype.update = function () {
       var self = this;
+      if (this.game_over) {
+         return;
+      }
       this.context.clearRect(0, 0, 800, 600);
       this.context.fillStyle = 'black';
       this.context.fillRect(0, 0, 800, 600);
 
+       
+
       if (this.currentStage) {
          this.currentStage.render(this.context);
+      }
+
+      //check for collisions of stage deaths and player
+      for (var i = 0, count = this.currentStage.deaths.length; i < count; i++) {
+         var dir = checkCollision(this.player, this.currentStage.deaths[i]);
+         if (dir !== null) {
+            this.player.lifes -= 1;
+            this.player.reset();
+            if (this.player.lifes === 0){
+               this.game_over = true;
+            }
+         }
       }
 
       //check for collisions of stage platfforms and player
@@ -26,7 +45,6 @@
            if (dir === "l" || dir === "r") {
                this.player.speed.horizontal = 0;
                this.player.collision.horizontal = dir;
-               this.player.jumping = false;
            } else if (dir === "b") {
                this.player.grounded = true;
                this.player.jumping = false;
@@ -36,10 +54,17 @@
 
       }
 
+      
+
       if (this.player) {
          this.player.update();
          this.player.render(this.context);
       }
+
+      if (this.guiRender && this.player) {
+         this.guiRender.renderPlayerLifes(this.context, this.player);
+      }
+
       requestAnimationFrame(function(){
          self.update();
       });
@@ -47,7 +72,8 @@
 
    Main.prototype.init = function () {
       this.player = new Player();
-      this.currentStage = new StageDemo();
+      this.currentStage = new Stage1();
+      this.guiRender = new GUI();
 
       //Init Canvas and Context properties of main object of game
       this.canvas = document.querySelector('#game-canvas');
