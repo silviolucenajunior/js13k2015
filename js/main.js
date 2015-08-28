@@ -24,6 +24,14 @@
          this.currentStage.render(this.context);
       }
 
+      //Check for Collision with stage door
+      var dir = checkCollision(this.player, this.currentStage.exitDoor);
+      if (dir !== null) {
+         this.player.reset();
+         this.currentStage = new Stage2();
+      }
+
+
       //check for collisions of stage deaths and player
       for (var i = 0, count = this.currentStage.deaths.length; i < count; i++) {
          var dir = checkCollision(this.player, this.currentStage.deaths[i]);

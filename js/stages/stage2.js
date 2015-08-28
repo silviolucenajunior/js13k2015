@@ -1,4 +1,4 @@
-function Stage1 () {
+function Stage2 () {
    this.platforms = [];
    this.deaths = [];
    this.switchs = [];
@@ -7,7 +7,7 @@ function Stage1 () {
    this.init();
 }
 
-Stage1.prototype.init = function init() {
+Stage2.prototype.init = function init() {
    this.exitDoor = {
       position: {
          x: 760,
@@ -22,20 +22,20 @@ Stage1.prototype.init = function init() {
    this.platforms.push({
       position: {
          x: 0,
-         y: 300
+         y: 200
       },
       dimensions: {
-         width: 200,
-         height: 300
+         width: 100,
+         height: 200
       }
    });
    this.platforms.push({
       position: {
-         x: 500,
+         x: 300,
          y: 300
       },
       dimensions: {
-         width: 300,
+         width: 250,
          height: 300
       }
    });
@@ -92,7 +92,7 @@ Stage1.prototype.init = function init() {
    
 };
 
-Stage1.prototype.render = function (context) {
+Stage2.prototype.render = function (context) {
    context.fillStyle = 'gray';
    for (var i = 0, count = this.platforms.length; i < count; i++) {
        context.fillRect(this.platforms[i].position.x, this.platforms[i].position.y, this.platforms[i].dimensions.width, this.platforms[i].dimensions.height);
