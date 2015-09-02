@@ -24,6 +24,13 @@
          this.currentStage.render(this.context);
       }
 
+      if (this.currentStage instanceof Title) {
+         requestAnimationFrame(function(){
+            self.update();
+         });
+         return;
+      }
+
       //Check for Collision with stage door
       var dir = checkCollision(this.player, this.currentStage.exitDoor);
       if (dir !== null) {
@@ -80,7 +87,7 @@
 
    Main.prototype.init = function () {
       this.player = new Player();
-      this.currentStage = new Stage1();
+      this.currentStage = new Title();
       this.guiRender = new GUI();
 
       //Init Canvas and Context properties of main object of game
