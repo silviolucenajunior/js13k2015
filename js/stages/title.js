@@ -15,11 +15,18 @@ Title.prototype.init = function init() {
    this.buttonWidth = 200;
    this.buttonHeight = 100;
    this.selectedButtonIndex = 0; //0 based index
+   console.log("Init Stage");
+   
+   this._resolverKeyUp = this.bindKeyUp.bind(this);
+   console.log("kakskas");
+   console.log(this._resolverKeyUp);
    this.bindEvents();
+
 };
 
 Title.prototype.bindKeyUp = function (ev) {
    console.log("OOOW");
+   console.log(this);
    if (ev.keyCode == 38) { //UP
          this.selectedButtonIndex = 0;
       }
@@ -39,11 +46,13 @@ Title.prototype.bindKeyUp = function (ev) {
 
 Title.prototype.bindEvents = function () {
    var self = this;
-   document.body.addEventListener('keyup', this.bindKeyUp.bind(this));
+   console.log("Binding Events");
+   console.log(this._resolverKeyUp);
+   document.body.addEventListener('keyup', this._resolverKeyUp );
 };
 
 Title.prototype.off = function () {
-   document.body.removeEventListener('keyup', this.bindKeyUp.bind(this)); 
+   document.body.removeEventListener('keyup', this._resolverKeyUp ); 
 };
 
 Title.prototype.renderButtons = function (context) {

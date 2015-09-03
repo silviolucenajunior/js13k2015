@@ -87,7 +87,7 @@
    };
 
    Main.prototype.init = function () {
-      this.player = new Player();
+  //    this.player = new Player();
       console.log(this.stageManager);
       this.stageManager.addStage("Title", new Title(this.stageManager));
       this.stageManager.addStage("Instructions", new Instructions(this.stageManager));

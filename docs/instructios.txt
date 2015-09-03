@@ -1,0 +1,13 @@
+Voce ira fazer parte de um experimento em laboratorio onde iremos testar um dispositivo revolucionario.
+Ainda nao estamos certos sobre tudo o que ele pode fazer, entao é sua missão descobrir e fazer um relatorio
+no final de sua jornada.
+Eis abaixo algumas coisas que voc^e precisa saber para sobre sua missão.
+Boa sorte!
+
+Aperte espaço para ativar/desativar o Reverse
+Cuidado, isto mata
+Estas portas lhe levarão a saida do laboratorio
+Os sentinelas também matam, cuidado.
+
+Essas são suas vidas, não vá perder todas
+O Reverse ainda é um prototypo então não abuse dele pois ele pode falhar.
