@@ -92,7 +92,7 @@
       this.stageManager.addStage("Title", new Title(this.stageManager));
       this.stageManager.addStage("Instructions", new Instructions(this.stageManager));
       this.stageManager.addStage("Stage1", new Stage1(this.stageManager));
-      this.stageManager.goTo("Title");
+      this.stageManager.goTo("Instructions");
       //this.currentStage = new Title();
       this.guiRender = new GUI();
 
