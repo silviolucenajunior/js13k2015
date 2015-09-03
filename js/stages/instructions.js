@@ -59,6 +59,32 @@ Instructions.prototype.render = function (context) {
    for (var i = 0, count = 4; i < count; i++) {
       context.fillRect(_boxBaseX + (i * 100) + (10 * i), _boxBaseY, 100, 100);
    }
+   context.fillStyle = "blue";
+   context.fillRect(_boxBaseX + 5, _boxBaseY + 10, 90, 10); //Draw blue line
+   context.fillStyle = "red";
+   context.fillRect(_boxBaseX + 100 + 10 + 40, _boxBaseY + 10, 20, 30); //Draw red rectangle
+   context.fillStyle = "green";
+   context.beginPath();
+   context.moveTo(_boxBaseX + 100 + 10 + 100 + 10 + 35, _boxBaseY + 40);
+   context.lineTo(_boxBaseX + 100 + 10 + 100 + 10 + 50, _boxBaseY + 10);
+   context.lineTo(_boxBaseX + 100 + 10 + 100 + 10 + 65, _boxBaseY + 40);
+   context.fill();
+
+   context.fillStyle = "#000";
+   context.beginPath();
+   context.moveTo(_boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 5, _boxBaseY + 40);
+   context.lineTo(_boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 20, _boxBaseY + 10);
+   context.lineTo(_boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 35, _boxBaseY + 40);
+   context.fill();
+   context.beginPath();
+   context.moveTo(_boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 40, _boxBaseY + 10);
+   context.lineTo(_boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 55, _boxBaseY + 40);
+   context.lineTo(_boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 70, _boxBaseY + 10);
+   context.fill();
+
+   context.fillStyle = "#fff";
+   context.fillText("Cuidado.", _boxBaseX + 5, _boxBaseY + 70);
+   context.fillText("Isto Mata", _boxBaseX + 5, _boxBaseY + 82);
    /*context.fillRect(50, 150, 100, 100); //Draw box 1
    context.fillRect(160, 150, 100, 100); // Draw box 2
    context.fillStyle = "blue";
