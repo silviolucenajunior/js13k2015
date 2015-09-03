@@ -6,6 +6,7 @@
       this.context = null;
       this.game_over = false;
       this.guiRender = null;
+      this.stageManager = new StageManager(this);
       window.reversed = 1;
    }
 
@@ -24,7 +25,7 @@
          this.currentStage.render(this.context);
       }
 
-      if (this.currentStage instanceof Title) {
+      if (this.currentStage instanceof Title || this.currentStage instanceof Instructions) {
          requestAnimationFrame(function(){
             self.update();
          });
@@ -87,7 +88,12 @@
 
    Main.prototype.init = function () {
       this.player = new Player();
-      this.currentStage = new Title();
+      console.log(this.stageManager);
+      this.stageManager.addStage("Title", new Title(this.stageManager));
+      this.stageManager.addStage("Instructions", new Instructions(this.stageManager));
+      this.stageManager.addStage("Stage1", new Stage1(this.stageManager));
+      this.stageManager.goTo("Title");
+      //this.currentStage = new Title();
       this.guiRender = new GUI();
 
       //Init Canvas and Context properties of main object of game

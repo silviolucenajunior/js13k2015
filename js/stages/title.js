@@ -1,8 +1,9 @@
-function Title () {
-   this.init();
+function Title (stageManager) {
+   this.stageManager = stageManager;
 }
 
 Title.prototype.init = function init() {
+   
    this.buttons = [
       {
          title: 'Start'
@@ -17,10 +18,9 @@ Title.prototype.init = function init() {
    this.bindEvents();
 };
 
-Title.prototype.bindEvents = function () {
-   var self = this;
-   document.body.addEventListener('keyup', function (ev) {
-      if (ev.keyCode == 38) { //UP
+Title.prototype.bindKeyUp = function (ev) {
+   console.log("OOOW");
+   if (ev.keyCode == 38) { //UP
          this.selectedButtonIndex = 0;
       }
 
@@ -29,22 +29,34 @@ Title.prototype.bindEvents = function () {
       }
 
       if (ev.keyCode == 13) { //DOWN
-         alert(this.selectedButtonIndex);
+         if (this.selectedButtonIndex === 0) {
+            this.stageManager.goTo("Stage1");
+         } else {
+            this.stageManager.goTo("Instructions");
+         }
       }
-   }.bind(this));
+};
+
+Title.prototype.bindEvents = function () {
+   var self = this;
+   document.body.addEventListener('keyup', this.bindKeyUp.bind(this));
+};
+
+Title.prototype.off = function () {
+   document.body.removeEventListener('keyup', this.bindKeyUp.bind(this)); 
 };
 
 Title.prototype.renderButtons = function (context) {
-   context.fillStyle = "#c3c3c3";
    var _baseX = (800 / 2) - (this.buttonWidth / 2);
    var _baseY = (600 / 2) - (this.buttonHeight / 2);
+   context.fillStyle = "#fff";
+   context.fillRect(_baseX - 5, _baseY + (this.selectedButtonIndex * 70) - 5, 210, 70);
+   context.fillStyle = "#c3c3c3";
    for (var i = 0, count = this.buttons.length; i < count; i++) {
       context.fillRect(_baseX, _baseY + (i * 70), 200, 60);
    }
    
-   context.fillStyle = "#fff";
-   context.fillRect(_baseX, _baseY + (this.selectedButtonIndex * 70), 200, 60);
-   //context.stroke();
+      //context.stroke();
 };
 
 Title.prototype.render = function (context) {
