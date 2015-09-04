@@ -22,9 +22,9 @@ Instructions.prototype.renderButtons = function (context) {
    var _baseX = (800 / 2) - (this.buttonWidth / 2);
    var _baseY = (600 / 2) - (this.buttonHeight / 2);
    context.fillStyle = "#fff";
-   context.fillRect(0, 0, 210, 70);
+   context.fillRect(700, 500, 210, 70);
    context.fillStyle = "#c3c3c3";
-   context.fillRect(5, 5, 210, 70);
+   context.fillRect(700, 500, 210, 70);
 };
 
 Instructions.prototype.bindKeyUp = function (ev) {
@@ -44,14 +44,16 @@ Instructions.prototype.off = function () {
 };
 
 Instructions.prototype.render = function (context) {
-   this.renderButtons(context);
    context.font = '42px Impact';
    context.fillStyle = "#fff";
-   context.fillText("Reverse Instructions", 106, 100); 
+   var _tempTextWidth = context.measureText("Instructions").width;
+   context.fillText("Instructions", (800 / 2 - _tempTextWidth / 2), 100); 
    context.font = '12px Arial';
-   context.fillText("Voce ira fazer parte de um experimento em laboratorio onde iremos testar um dispositivo revolucionario.", 50, 100);
-   context.fillText("Voce ira fazer parte de um experimento em laboratorio onde iremos testar um dispositivo revolucionario.", 50, 115);
-   context.fillText("Voce ira fazer parte de um experimento em laboratorio onde iremos testar um dispositivo revolucionario.", 50, 130);
+   context.fillText("Voce ira fazer parte de um experimento em laboratorio onde iremos testar um dispositivo revolucionario.", 50, 150);
+   context.fillText("Ainda nao estamos certos sobre tudo o que ele pode fazer, entao é sua missão descobrir e fazer um relatorio.", 50, 165);
+   context.fillText("Eis abaixo algumas coisas que voc^e precisa saber para sobre sua missão.", 50, 180);
+   context.fillText("Para retornar a tela de Titulo aperte ENTER", 50, 500);
+   context.fillText("Boa Sorte! Contamos com você.", 50, 512);
    context.fillStyle = "#c3c3c3";
    var _boxBaseX = (800 / 2) - (((4 * 100) + (3 * 10)) / 2); //(screenWidth / 2) - ((numberOfBlocks * blockWidth) + ((numberOfBlocks - 1) * gap)) to centralize
    var _boxBaseY = 350; //Arbitrary value
@@ -85,26 +87,13 @@ Instructions.prototype.render = function (context) {
    context.fillStyle = "#fff";
    context.fillText("Cuidado.", _boxBaseX + 5, _boxBaseY + 70);
    context.fillText("Isto Mata", _boxBaseX + 5, _boxBaseY + 82);
-   /*context.fillRect(50, 150, 100, 100); //Draw box 1
-   context.fillRect(160, 150, 100, 100); // Draw box 2
-   context.fillStyle = "blue";
-   context.fillRect(165, 195, 90, 10); //Draw blue line
-   context.fillStyle = "#c3c3c3";
-   context.fillRect(270, 150, 100, 100); //Draw Box 3
-   context.fillStyle = "red";
-   context.fillRect(300, 175, 40, 60); //Draw red rectangle
-   context.fillStyle = "#c3c3c3";
-   context.fillRect(380, 150, 100, 100); //Draw Box 4
-   context.fillStyle = "green";
-   context.beginPath();
-   context.moveTo(400, 175);
-   context.lineTo(430, 200);
-   context.lineTo(380, 200);
-   context.fill(); */
-   context.fillStyle = "#fff";
-   context.fillText("Aperte Space para ativar/desativar o Reverse", 50, 150);
-   context.fillText("Cuidado! Isto Mata", 160, 150);
-   context.fillText("As portas lhe levarão a saida do laboratorio", 270, 150);
-   context.fillText("Os sentinelas também matam, cuidado!", 380, 150);
 
+   context.fillText("As portas lhe levarão", _boxBaseX + 100 + 10 + 5, _boxBaseY + 70);
+   context.fillText("a saida do laboratorio", _boxBaseX + 100 + 10 + 5, _boxBaseY + 82);
+
+   context.fillText("Existem sentinelas, ", _boxBaseX + 100 + 10 + 100 + 10 + 5, _boxBaseY + 70);
+   context.fillText("cuidado, eles matam", _boxBaseX + 100 + 10 + 100 + 10 + 5, _boxBaseY + 82);
+
+   context.fillText("As portas lhe levarão", _boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 5, _boxBaseY + 70);
+   context.fillText("a saida do laboratorio", _boxBaseX + 100 + 10 + 100 + 10 + 100 + 10 + 5, _boxBaseY + 82);
 };
