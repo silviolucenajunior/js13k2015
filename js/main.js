@@ -36,7 +36,7 @@
       var dir = checkCollision(this.player, this.currentStage.exitDoor);
       if (dir !== null) {
          this.player.reset();
-         this.currentStage = new Stage2();
+         this.stageManager.nextStage();
       }
 
 
@@ -92,9 +92,10 @@
       this.stageManager.addStage("Title", new Title(this.stageManager));
       this.stageManager.addStage("Instructions", new Instructions(this.stageManager));
       this.stageManager.addStage("Stage1", new Stage1(this.stageManager));
-      this.stageManager.goTo("Instructions");
-      //this.currentStage = new Title();
-      this.guiRender = new GUI();
+      this.stageManager.addStage("Stage2", new Stage2(this.stageManager));
+      this.stageManager.addStage("Stage3", new Stage3(this.stageManager));
+      this.stageManager.goTo("Title");
+       this.guiRender = new GUI();
 
       //Init Canvas and Context properties of main object of game
       this.canvas = document.querySelector('#game-canvas');
