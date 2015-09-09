@@ -6,7 +6,6 @@ function checkCollision (objectA, objectB) {
     var colDir = null;
 
     if (Math.abs(distanceX) < halfWidths && Math.abs(distanceY) < halfHeights) {
-    	console.log("Have collision");
     	var entranceX = halfWidths - Math.abs(distanceX);
         var entranceY = halfHeights - Math.abs(distanceY);
 
@@ -23,26 +22,18 @@ function checkCollision (objectA, objectB) {
             	if (window.reversed === 1){
                    colDir = "b";
                    objectA.position.y = objectB.position.y - objectA.dimensions.height;
-                //   objectA.position.y -= collisionY + 10;
                 } else {
                    colDir = "t";
                    objectA.position.y = objectB.position.y - objectA.dimensions.height;
-                //   objectA.position.y += collisionY + 13;
                 }
             }
         } else {
             if (distanceX > 0) {
                 colDir = "l";
-                console.log("LEFt");
                 objectA.position.x = objectB.position.x + objectB.dimensions.width;
-                //objectA.position.x = objectB.position.x + objectA.dimensions.width;
-              //  objectA.position.x += oX;
             } else {
                 colDir = "r";
-                console.log("RIGJT")
                 objectA.position.x = objectB.position.x - objectA.dimensions.width;
-                
-               // objectA.position.x -= oX;
             }
         }
     }

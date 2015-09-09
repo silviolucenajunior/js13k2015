@@ -35,7 +35,6 @@ Instructions.prototype.bindKeyUp = function (ev) {
 
 Instructions.prototype.bindEvents = function () {
    var self = this;
-   console.log("EEEEEE");
    document.body.addEventListener('keyup', this._resolverKeyUp);
 };
 

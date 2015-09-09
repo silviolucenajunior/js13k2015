@@ -20,10 +20,7 @@ StageManager.prototype.goTo = function (name) {
 }
 
 StageManager.prototype.nextStage = function () {
-	console.log("Ntext");
-	console.log(this.main.currentStage.constructor);
 	if (this.main.currentStage instanceof Stage1) {
-		console.log("blow");
 		this.goTo("Stage2");
 	} else if (this.main.currentStage instanceof Stage2) {
 		this.goTo("Stage3");

@@ -24,12 +24,9 @@
       this.lifes = 3;
 
       document.body.addEventListener('keydown', function (ev) {
-         console.log("KEY" + ev.keyCode);
          if (self.keys[ev.keyCode]) {
             return;
          }
-         console.log("Down");
-         console.log(self);
          self.keys[ev.keyCode] = true;
       });
 
@@ -37,7 +34,6 @@
          if (!self.keys[ev.keyCode]) {
             return;
          }
-         console.log("Up");
          self.keys[ev.keyCode] = false;
 
          if (ev.keyCode == 32) {
@@ -75,9 +71,7 @@
       this.speed.horizontal = 0;
 
       if (this.keys[38] === true && window.reversed === 1) {
-         console.log("JUMP");
          if (!this.jumping){
-            console.log("JUMP");
             this.jumping = true;
             this.grounded = false;
             this.speed.vertical = -6 * window.reversed;
@@ -85,20 +79,12 @@
       }
 
       if (this.keys[40] === true && window.reversed === -1) {
-         console.log("JUMP");
          if (!this.jumping){
-            console.log("JUMP");
             this.jumping = true;
             this.grounded = false;
             this.speed.vertical = -6 * window.reversed;
          }
       }
-
-     /* if (this.keys[32] === true) {
-         window.reversed = -1;
-      } else {
-         window.reversed = 1;
-      }*/
 
       if (this.keys[39] === true) {
          if (this.collision.horizontal !== "r") {
@@ -130,7 +116,4 @@
    };
 
    window.Player = Player;
-
-   
-
 })();
