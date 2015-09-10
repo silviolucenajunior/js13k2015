@@ -5,15 +5,20 @@ function Stage () {
 }
 
 Stage.prototype.populate = function (objects) {
+   var _object = null;
    for (var type in objects) {
       for (var i = 0, count = objects[type].length; i < count; i++){
-         this.objects.push({
+         _object = {
             x: objects[type][i][0],
             y: objects[type][i][1],
             width: objects[type][i][2],
             height: objects[type][i][3],
             type: type
-         });
+         };
+         this.objects.push(_object);
+         if (type === "exitDoor") {
+            this.exitDoor = _object;
+         }
       }
    }
 };

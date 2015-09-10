@@ -22,7 +22,7 @@
          death: [
             [200, 590, 300, 10]
          ],
-         exitDoor: [760, 240, 40, 60]
+         exitDoor: [[760, 240, 40, 60]]
       };
 
       this.stage2 = {
@@ -91,11 +91,42 @@
       }
 
       //Check for Collision with stage door
-  /*    var dir = checkCollision(this.player, this.currentStage.exitDoor);
+     /* var dir = checkCollision(this.player, this.currentStage.exitDoor);
       if (dir !== null) {
          this.player.reset();
          this.stageManager.nextStage();
       } */
+
+      for (var i = 0, count = this.currentStage.objects.length; i < count; i++) {
+         var dir = checkCollision(this.player, this.currentStage.objects[i]);
+         if (this.currentStage.objects[i].type === "platform") {
+            if (dir === "l" || dir === "r") {
+               this.player.speed.horizontal = 0;
+               this.player.collision.horizontal = dir;
+            } else if (dir === "b") {
+               this.player.grounded = true;
+               this.player.jumping = false;
+            } else if (dir === "t") {
+               this.player.speed.vertical *= -1;
+            }   
+         } else if (this.currentStage.objects[i].type === "death") {
+            if (dir !== null) {
+               this.player.lifes -= 1;
+               this.player.reset();
+               if (this.player.lifes === 0){
+                  this.game_over = true;
+               }
+            }
+         } else if (this.currentStage.objects[i].type === "exitDoor") {
+            if (dir !== null) {
+               this.player.reset();
+               this.stageManager.nextStage();
+            } 
+         }   
+ 
+         
+
+      }
 
       //check for collisions of stage deaths and player
    /*   for (var i = 0, count = this.currentStage.deaths.length; i < count; i++) {
