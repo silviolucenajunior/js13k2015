@@ -1,5 +1,4 @@
 function GUI () {
-
 }
 
 GUI.prototype.renderPlayerLifes = function (context, player) {

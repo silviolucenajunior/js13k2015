@@ -35,6 +35,10 @@
             [0, 0, 10, 600],
             [790, 0, 10, 600]
          ],
+         transform: [
+            [390, 300, 100, 10],
+            [590, 300, 100, 10],
+         ],
          death: [
             [200, 590, 300, 10]
          ],
@@ -62,12 +66,12 @@
       var _stage1 = new Stage();
       _stage1.populate(this.stage1);
       this.stageManager.addStage("Stage1", _stage1);
-     /* var _stage2 = new Stage();
-      _stage1.populate(this.stage2);
+      var _stage2 = new Stage();
+      _stage2.populate(this.stage2);
       this.stageManager.addStage("Stage2", _stage2);
       var _stage3 = new Stage();
-      _stage1.populate(this.stage3);
-      this.stageManager.addStage("Stage3", _stage3);*/
+      _stage3.populate(this.stage3);
+      this.stageManager.addStage("Stage3", _stage3);
    };
 
    Main.prototype.update = function () {
@@ -90,12 +94,8 @@
          return;
       }
 
-      //Check for Collision with stage door
-     /* var dir = checkCollision(this.player, this.currentStage.exitDoor);
-      if (dir !== null) {
-         this.player.reset();
-         this.stageManager.nextStage();
-      } */
+      this.player.grounded = false;
+      this.player.collision.horizontal = null;
 
       for (var i = 0, count = this.currentStage.objects.length; i < count; i++) {
          var dir = checkCollision(this.player, this.currentStage.objects[i]);
@@ -123,40 +123,7 @@
                this.stageManager.nextStage();
             } 
          }   
- 
-         
-
       }
-
-      //check for collisions of stage deaths and player
-   /*   for (var i = 0, count = this.currentStage.deaths.length; i < count; i++) {
-         var dir = checkCollision(this.player, this.currentStage.deaths[i]);
-         if (dir !== null) {
-            this.player.lifes -= 1;
-            this.player.reset();
-            if (this.player.lifes === 0){
-               this.game_over = true;
-            }
-         }
-      }*/
-
-      //check for collisions of stage platfforms and player
-      this.player.grounded = false;
-      this.player.collision.horizontal = null;
-    /*  for (var i = 0, count = this.currentStage.platforms.length; i < count; i++) {
-         var dir = checkCollision(this.player, this.currentStage.platforms[i]);
- 
-           if (dir === "l" || dir === "r") {
-               this.player.speed.horizontal = 0;
-               this.player.collision.horizontal = dir;
-           } else if (dir === "b") {
-               this.player.grounded = true;
-               this.player.jumping = false;
-           } else if (dir === "t") {
-               this.player.speed.vertical *= -1;
-           }
-
-      }*/
 
       if (this.player) {
          this.player.update();
@@ -176,11 +143,8 @@
       this.stageManager.addStage("Title", new Title(this.stageManager));
       this.stageManager.addStage("Instructions", new Instructions(this.stageManager));
       this._upStages();
-     // this.stageManager.addStage("Stage1", new Stage1(this.stageManager));
-     // this.stageManager.addStage("Stage2", new Stage2(this.stageManager));
-    // this.stageManager.addStage("Stage3", new Stage3(this.stageManager));
       this.stageManager.goTo("Title");
-       this.guiRender = new GUI();
+      this.guiRender = new GUI();
 
       //Init Canvas and Context properties of main object of game
       this.canvas = document.querySelector('#game-canvas');

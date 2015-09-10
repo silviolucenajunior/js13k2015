@@ -5,14 +5,10 @@
       this.grounded = false;
       this.gravity = 0.3;
       this.reversed = 1;
-      this.position = {
-         x: 10,
-         y: 30
-      };
-      this.dimensions = {
-         width: 8,
-         height: 8
-      };
+      this.x = 10;
+      this.y = 30;
+      this.width = 8;
+      this.height = 8;
       this.speed = {
          vertical: 0,
          horizontal: 0
@@ -22,6 +18,7 @@
       };
       this.keys = [];
       this.lifes = 3;
+      this.reverseCharges = 4;
 
       document.body.addEventListener('keydown', function (ev) {
          if (self.keys[ev.keyCode]) {
@@ -36,7 +33,8 @@
          }
          self.keys[ev.keyCode] = false;
 
-         if (ev.keyCode == 32) {
+         if (ev.keyCode == 32 && self.grounded === true && self.reverseCharges > 0) {
+            this.reverseCharges -= 1;
             window.reversed = window.reversed * -1;
             self.jumping = true;
             self.grounded = false;
@@ -49,14 +47,10 @@
       this.grounded = false;
       this.gravity = 0.3;
       this.reversed = 1;
-      this.position = {
-         x: 10,
-         y: 30
-      };
-      this.dimensions = {
-         width: 8,
-         height: 8
-      };
+      this.x = 10;
+      this.y = 10;
+      this.width = 8;
+      this.height = 8;
       this.speed = {
          vertical: 0,
          horizontal: 0
@@ -96,7 +90,6 @@
          if (this.collision.horizontal !== "l") {
             this.speed.horizontal = -5 * window.reversed;
          }
-         
       }
 
       this.speed.vertical += (this.gravity * window.reversed); // Gravity;
@@ -105,14 +98,14 @@
          this.speed.vertical = 0;
       }
 
-      this.position.y += this.speed.vertical;
-      this.position.x += this.speed.horizontal;
+      this.y += this.speed.vertical;
+      this.x += this.speed.horizontal;
    };
 
    Player.prototype.render = function (context) {
       //Draw the Player
       context.fillStyle = 'red';
-      context.fillRect(this.position.x, this.position.y, this.dimensions.width, this.dimensions.height);
+      context.fillRect(this.x, this.y, this.width, this.height);
    };
 
    window.Player = Player;

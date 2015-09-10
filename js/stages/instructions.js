@@ -3,28 +3,11 @@ function Instructions (stageManager) {
 }
 
 Instructions.prototype.init = function init() {
-   this.buttons = [
-      {
-         title: 'Start'
-      },
-      {
-         title: 'Instructions'
-      }
-   ];
    this.buttonWidth = 200;
    this.buttonHeight = 100;
    this.selectedButtonIndex = 0; //0 based index
    this._resolverKeyUp = this.bindKeyUp.bind(this);
    this.bindEvents();
-};
-
-Instructions.prototype.renderButtons = function (context) {
-   var _baseX = (800 / 2) - (this.buttonWidth / 2);
-   var _baseY = (600 / 2) - (this.buttonHeight / 2);
-   context.fillStyle = "#fff";
-   context.fillRect(700, 500, 210, 70);
-   context.fillStyle = "#c3c3c3";
-   context.fillRect(700, 500, 210, 70);
 };
 
 Instructions.prototype.bindKeyUp = function (ev) {
