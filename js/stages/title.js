@@ -30,10 +30,10 @@ Title.prototype.bindKeyUp = function (ev) {
          this.selectedButtonIndex = 1;
       }
 
-      if (ev.keyCode == 13) { //DOWN
+      if (ev.keyCode == 13) { //ENTER
          if (this.selectedButtonIndex === 0) {
             this.stageManager.goTo("Stage1");
-            this.stageManager.main.player = new Player();
+            this.stageManager.main.player = new Player(this.stageManager.main);
          } else {
             this.stageManager.goTo("Instructions");
          }

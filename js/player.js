@@ -1,12 +1,15 @@
 (function () {
-   function Player () {
+   function Player (main) {
       var self = this;
+      console.log("Under Plaher");
+      console.log(main);
+      this.main = main;
       this.jumping = false;
       this.grounded = false;
       this.gravity = 0.3;
       this.reversed = 1;
       this.x = 10;
-      this.y = 30;
+      this.y = 40;
       this.width = 8;
       this.height = 8;
       this.speed = {
@@ -34,8 +37,10 @@
          self.keys[ev.keyCode] = false;
 
          if (ev.keyCode == 32 && self.grounded === true && self.reverseCharges > 0) {
-            this.reverseCharges -= 1;
+            self.reverseCharges -= 1;
             window.reversed = window.reversed * -1;
+            console.log("POrrA");
+            self.main.stageManager.reverse();
             self.jumping = true;
             self.grounded = false;
          }
@@ -46,9 +51,10 @@
       this.jumping = false;
       this.grounded = false;
       this.gravity = 0.3;
+      this.reverseCharges = 4;
       this.reversed = 1;
       this.x = 10;
-      this.y = 10;
+      this.y = 30;
       this.width = 8;
       this.height = 8;
       this.speed = {
